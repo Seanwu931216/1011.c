@@ -18,7 +18,7 @@ int main() {
             for(j = -1;j<= 1 ;j++){
                 if( i==0 && j==0)continue;//待在自己原本的的位置上，故不考慮，繼續for迴圈
                 for(k=1;k<board_size;k++){
-                    if(x+i*k<0 ||y+i*k>(board_size-1)||//i、j從0~7，需考慮大於7小於0的可能
+                    if(x+i*k<0 ||x+i*k>(board_size-1)||//i、j從0~7，需考慮大於7小於0的可能
                        y+j*k<0 ||y+j*k>(board_size-1)||
                        chessy[x+i*k][y+j*k]==value)break;//從原本位置開始找，找到跟自己同色則breeak
                     if(chessy[x+i*k][y+j*k]==0){
