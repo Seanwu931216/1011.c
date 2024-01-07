@@ -1,37 +1,53 @@
 #include <stdio.h>
-#include <stdbool.h>
 #define BOARD_SIZE 8
 int main() {
-    int reversi[BOARD_SIZE][BOARD_SIZE], posX, posY, sltDisk, sltColor;
+    int found, posX, posY, sltDisk, sltColor;
     int i, j, k;
-    bool found=false;
-    for (i=0; i<BOARD_SIZE; ++i)
-        for (j=0; j<BOARD_SIZE; ++j)
-            scanf("%d", &(reversi[i][j]));
-    scanf("%d %d %d", &posX, &posY, &sltColor);
+    found=0;
+    int reversi[BOARD_SIZE][BOARD_SIZE] = {
+        {0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0},
+        {0,0,0,2,1,0,0,0},
+        {0,0,0,1,2,0,0,0},
+        {0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0}
+    };
+    scanf("%d%d%d", &posX, &posY, &sltColor);
     sltDisk=reversi[posX][posY];
+    printf("%d",sltDisk);
     switch (sltDisk) {
     case 0:
         printf("There is no disk at (%d, %d).\n ", posX, posY);
-        if (sltColor==1) printf("black ");
-        else printf("white ");
+        if (sltColor==1)
+            printf("black ");
+        else
+            printf("white ");
+        //方向向量
         for (i=-1; i<=1; ++i)
             for (j=-1; j<=1; ++j) {
-                if (i==0 && j==0) continue;
-                for (k=1; k<=BOARD_SIZE; ++k) {
+                if (i==0 && j==0)
+                    continue;
+                //k代表步數
+                for (k=1; k<=2; ++k) {
                     if (posX+i*k<0 || posX+i*k>=BOARD_SIZE ||
                         posY+j*k<0 || posY+j*k>=BOARD_SIZE ||
-                        reversi[posX+i*k][posY+j*k]==0) break;
+                        reversi[posX+i*k][posY+j*k]==0) 
+                            break;
                     if (reversi[posX+i*k][posY+j*k]==sltColor) {
-                        if (k!=1) found=true;
+                        if (k!=1)
+                            found=1;
                         break;
                     }
                 }
-                if (found) break;
+                if (found)
+                    break;
             }
-            if (found) break;
-        if (found) printf("disk can be placed here.");
-        else printf("disk can\'t be placed here.");
+        if (found)
+            printf("disk can be placed here.");
+        else
+            printf("disk can't be placed here.");
         break;
     case 1:
         printf("The disk at (%d, %d) is black.\nNo new disk can be placed here.", posX, posY);
