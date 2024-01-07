@@ -16,7 +16,6 @@ int main() {
     };
     scanf("%d%d%d", &posX, &posY, &sltColor);
     sltDisk=reversi[posX][posY];
-    printf("%d",sltDisk);
     switch (sltDisk) {
     case 0:
         printf("There is no disk at (%d, %d).\n ", posX, posY);
