@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #define BOARD_SIZE 8
 int main() {
-    unsigned char reversi[BOARD_SIZE][BOARD_SIZE], posX, posY, sltDisk, sltColor;
+    int reversi[BOARD_SIZE][BOARD_SIZE], posX, posY, sltDisk, sltColor;
     int i, j, k;
     bool found=false;
     for (i=0; i<BOARD_SIZE; ++i)
@@ -12,7 +12,7 @@ int main() {
     sltDisk=reversi[posX][posY];
     switch (sltDisk) {
     case 0:
-        printf("There is no disk at (%hhu, %hhu).\nThe ", posX, posY);
+        printf("There is no disk at (%d, %d).\n ", posX, posY);
         if (sltColor==1) printf("black ");
         else printf("white ");
         for (i=-1; i<=1; ++i)
@@ -34,10 +34,10 @@ int main() {
         else printf("disk can\'t be placed here.");
         break;
     case 1:
-        printf("The disk at (%hhu, %hhu) is black.\nNo new disk can be placed here.", posX, posY);
+        printf("The disk at (%d, %d) is black.\nNo new disk can be placed here.", posX, posY);
         break;
     case 2:
-        printf("The disk at (%hhu, %hhu) is white.\nNo new disk can be placed here.", posX, posY);
+        printf("The disk at (%d, %d) is white.\nNo new disk can be placed here.", posX, posY);
         break;
     }
 }
